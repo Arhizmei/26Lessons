@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init(){
         bind.apply {
-            rcView.layoutManager = GridLayoutManager(this@MainActivity, 3)
+            rcView.layoutManager = GridLayoutManager(this@MainActivity, 4)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener{
                 if ( index>4 ) index = 0
