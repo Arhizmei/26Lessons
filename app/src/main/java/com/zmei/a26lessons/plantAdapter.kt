@@ -13,15 +13,12 @@ class PlantAdapter: RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
         fun bind(plant: Plant)=with(binding){
             im.setImageResource(plant.imageId)
             tvTitle.text = plant.title
-
 }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantHolder {
+   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.plant_item, parent, false)
         return PlantHolder(view)
     }
-
        override fun onBindViewHolder(holder: PlantHolder, position: Int) {
         holder.bind(plantList[position])
     }
