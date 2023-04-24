@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">26Lessons</string>
+    <string name="Button_name">Next image</string>
+    <string name="Edit_text">Title</string>
+    <string name="Edit_text2">Description</string>
+    <string name="Button_name2">Done</string>
 </resources>
