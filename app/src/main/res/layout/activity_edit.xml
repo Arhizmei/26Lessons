@@ -36,7 +36,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -79,9 +79,11 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/bDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/Button_name2" />
 
         </LinearLayout>

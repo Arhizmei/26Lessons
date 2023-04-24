@@ -1,7 +1,10 @@
 package com.zmei.a26lessons
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zmei.a26lessons.databinding.ActivityMainBinding
@@ -9,18 +12,17 @@ import com.zmei.a26lessons.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var bind : ActivityMainBinding
     private val adapter = PlantAdapter()
-    private val imageIdList = listOf(
-        R.drawable.plant1,
-        R.drawable.plant2,
-        R.drawable.plant3,
-        R.drawable.plant4,
-        R.drawable.plant5,)
-    private var index = 0
+    private var editLauncher : ActivityResultLauncher<Intent>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
         init()
+        editLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if (it.resultCode == RESULT_OK)
+                adapter.addPlant(it.data?.getSerializableExtra("plant") as Plant)
+        }
     }
 
     private fun init(){
@@ -28,10 +30,7 @@ class MainActivity : AppCompatActivity() {
             rcView.layoutManager = GridLayoutManager(this@MainActivity, 4)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener{
-                if ( index>4 ) index = 0
-                val plant = Plant(imageIdList[index], "Plant $index")
-                adapter.addPlant(plant)
-                index ++
+            editLauncher?.launch(Intent(this@MainActivity, EditActivity::class.java))
             }
         }
     }
